@@ -39,7 +39,5 @@ except Exception as e:
 
 finally:
     time.sleep(20)
-    #закрываем браузер
     browser.close()
-    #закрываем сессию
     browser.quit()
