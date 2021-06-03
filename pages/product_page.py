@@ -21,7 +21,7 @@ class ProductPage(BasePage):
         # get the message
         message = self.browser.find_element(*ProductPageLocators.MESSAGE).text
         # check the book's name is equal to the one in the alert message
-        assert product_name in message, "The book name is not in the message"
+        assert product_name == message, "The book name is not the same as in the message"
     
     def should_be_equal_price(self):
         # check if the product price exists on the page
