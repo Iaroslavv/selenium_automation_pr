@@ -1,7 +1,7 @@
 from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from pages.locators import BasePageLocators
+from pages.locators import BasePageLocators, BasketPageLocators, LoginPageLocators
 import math
 
 class BasePage:
@@ -20,6 +20,17 @@ class BasePage:
     
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+    
+    def go_to_basket(self):
+        button = self.browser.find_element(*BasketPageLocators.BASKET_BUTTON)
+        button.click()
+    
+    def register_new_user(self, email, password):
+        self.browser.find_element(*LoginPageLocators.EMAIL).send_keys(email)
+        self.browser.find_element(*LoginPageLocators.PASSWORD).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.CONFIRM_PASSWORD).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.SUBMIT_BUTTON).click()
+        
     
     def open(self):
         """ Opens the page using the method (get)
